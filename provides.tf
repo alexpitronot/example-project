@@ -1,4 +1,4 @@
-resource "google_container_cluster" "default" {
+resource "google_container_cluster" "cluster" {
   name        = var.cluster_name
   project     = var.project_name
   description = "GKE Cluster"
