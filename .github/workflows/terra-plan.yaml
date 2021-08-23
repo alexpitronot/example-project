@@ -24,27 +24,33 @@ jobs:
       - name: set GCP project
         id: config_project
         run: gcloud config set project int-project
-#
-#      - name: "Decrypt key service account"
-#        id: decrypt_SA
-#        run: gcloud secrets versions access latest --secret=test-terraform-key --project="int-project"
-#        working-directory: "environments/${{ env.BRANCH_NAME }}"
 
-      - name: "Terraform Init"
-        id: terraform_init
-        uses: ops18/terraform-github-actions@master
-        with:
-          tf_actions_subcommand: init
+# Downloads a specific version of Terraform CLI and adds it to PATH
+      - name: "Setup - Terraform CLI"
+        uses: hashicorp/setup-terraform@v1
+
+      # Init pulls credentials from the .aws/credentials file by default
+      # -input = false will not require an input
+      - name: "Run - Terraform Init"
+        run: terraform init -input=false
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+      # The id value is used for reference in the comment step via "steps.plan.outputs.stdout"
+      # Note: Color is disabled to prevent messy characters from appearing in the pull request comment
+      # -no-color Disables terminal formatting sequences in the output
+      - name: "Run - Terraform Plan"
+        id: plan
+        run: terraform plan -input=false -no-color
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
 
-      - name: "Terraform Plan"
-        id: terraform_plan
-        uses: ops18/terraform-github-actions@master
-        with:
-          tf_actions_subcommand: plan
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+#      - name: "Terraform Plan"
+#        id: terraform_plan
+#        uses: ops18/terraform-github-actions@master
+#        with:
+#          tf_actions_subcommand: plan
+#        env:
+#          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
 
 #      - name: "Terraform Apply"
 #        uses: ops18/terraform-github-actions@master
