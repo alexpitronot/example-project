@@ -19,15 +19,16 @@ jobs:
           version: "latest"
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: false
 
       - name: set GCP project
         id: config_project
         run: gcloud config set project int-project
-
-      - name: "Decrypt key service account"
-        id: decrypt_SA
-        run: gcloud secrets versions access latest --secret=test-terraform-key --project="int-project"
-        working-directory: "environments/${{ env.BRANCH_NAME }}"
+#
+#      - name: "Decrypt key service account"
+#        id: decrypt_SA
+#        run: gcloud secrets versions access latest --secret=test-terraform-key --project="int-project"
+#        working-directory: "environments/${{ env.BRANCH_NAME }}"
 
       - name: "Terraform Init"
         id: terraform_init
