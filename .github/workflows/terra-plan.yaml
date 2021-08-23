@@ -7,6 +7,11 @@ jobs:
     name: 'Terraform-Plan'
     runs-on: ubuntu-latest
     steps:
+
+      - name: checkout
+        id: checkout_code
+        uses: actions/checkout@v2
+
       - name: configure gcloud
         id: config_gcloud
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
