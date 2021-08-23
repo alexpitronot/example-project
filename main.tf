@@ -1,3 +1,8 @@
+resource "google_service_account" "default" {
+  account_id   = var.service_account_id
+  display_name = "Service Account"
+}
+
 resource "google_container_cluster" "default" {
   name        = var.cluster_name
   project     = var.project_name
@@ -11,7 +16,7 @@ resource "google_container_cluster" "default" {
 module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google"
   project_id                 = var.project_id
-  name                       = "terra-cluster"
+  name                       = var.cluster_name
   region                     = var.cluster_region
   regional                   = false
   zones                      = [var.zones]
@@ -22,7 +27,6 @@ module "gke" {
   http_load_balancing        = false
   horizontal_pod_autoscaling = true
   network_policy             = false
-
   node_pools = [
     {
       name                      = "default-node-pool"
