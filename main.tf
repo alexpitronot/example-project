@@ -1,17 +1,7 @@
-resource "google_container_cluster" "default" {
-  name        = var.cluster_name
-  project     = var.project_name
-  description = "GKE Cluster"
-  location    = var.cluster_region
-  initial_node_count = var.initial_node_count
-
-}
-
-
 module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google"
   project_id                 = var.project_id
-  name                       = "terra-cluster"
+  name                       = var.cluster_name
   region                     = var.cluster_region
   regional                   = false
   zones                      = [var.zones]
@@ -22,7 +12,6 @@ module "gke" {
   http_load_balancing        = false
   horizontal_pod_autoscaling = true
   network_policy             = false
-
   node_pools = [
     {
       name                      = "default-node-pool"
