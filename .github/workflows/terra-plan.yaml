@@ -1,4 +1,5 @@
-name: 'Terraform GitHub Actions'
+name: 'Terraform CI'
+
 on:
   pull_request:
 
@@ -6,59 +7,38 @@ jobs:
   terraform:
     name: 'Terraform-Plan'
     runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
     steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: checkout
-        id: checkout_code
-        uses: actions/checkout@v2
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
 
-      - name: configure gcloud
-        id: config_gcloud
-        uses: google-github-actions/setup-gcloud@master
-        with:
-          version: "latest"
-          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: false
 
-      - name: set GCP project
-        id: config_project
-        run: gcloud config set project int-project
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
-# Downloads a specific version of Terraform CLI and adds it to PATH
-      - name: "Setup - Terraform CLI"
-        uses: hashicorp/setup-terraform@v1
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
-      # Init pulls credentials from the .aws/credentials file by default
-      # -input = false will not require an input
-      - name: "Run - Terraform Init"
-        run: terraform init -input=false
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
-      # The id value is used for reference in the comment step via "steps.plan.outputs.stdout"
-      # Note: Color is disabled to prevent messy characters from appearing in the pull request comment
-      # -no-color Disables terminal formatting sequences in the output
-      - name: "Run - Terraform Plan"
-        id: plan
-        run: terraform plan -input=false -no-color
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
-
-#      - name: "Terraform Plan"
-#        id: terraform_plan
-#        uses: ops18/terraform-github-actions@master
-#        with:
-#          tf_actions_subcommand: plan
-#        env:
-#          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
-
-#      - name: "Terraform Apply"
-#        uses: ops18/terraform-github-actions@master
-#        id: terraform_apply
-#        with:
-#          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
-#          tf_actions_comment: "false"
-#          tf_actions_working_dir: environments/${{ env.BRANCH_NAME }}
-#          tf_actions_subcommand: apply
-#        env:
-#          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+      # On push to main, build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
