@@ -5,10 +5,9 @@ on:
 
 jobs:
   terraform:
+  name: 'Terraform-Plan'
+  runs-on: ubuntu-latest
   steps:
-      name: 'Terraform-Plan'
-      runs-on: ubuntu-latest
-
 
      # Set Up GCP Account
       - name: Set up Cloud SDK
