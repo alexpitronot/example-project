@@ -13,7 +13,6 @@ jobs:
         run:
           shell: bash
 
-    steps:
       # Set Up GCP Account
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
