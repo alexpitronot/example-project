@@ -22,6 +22,11 @@ variable "machine_type" {
   default = "n1-standard-1"
 }
 
+//variable "credentials" {
+//  type = string
+//  description = "location of pass"
+//}
+
 variable "project_id" {
   type = string
   description = "project id"
