@@ -10,7 +10,7 @@ module "gke" {
   ip_range_pods              = ""
   ip_range_services          = ""
   http_load_balancing        = false
-  horizontal_pod_autoscaling = true
+  horizontal_pod_autoscaling = false
   network_policy             = false
   node_pools = [
     {
