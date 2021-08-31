@@ -1,0 +1,26 @@
+name: 'Deployment'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Gleb-Temp-Converter/*
+
+jobs:
+  cluster-app:
+    name: 'Deployment'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to cluster
+      - uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
+        with:
+          service_account: ${{ secrets.GCP_SA_EMAIL}}
+          zone: 'us-central1-c'
+          project_id: ${{ secrets.GCP_PROJECT_ID}}
+          registry: 'gcr.io'
+          image_name: 'dev-fe'
+          cluster: 'terra-cluster'
+          namespace: 'dev'
+          deployment: 'front-end-dep'
+          container: 'front-end'
