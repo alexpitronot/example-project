@@ -19,7 +19,7 @@ jobs:
           zone: 'us-central1-c'
           project_id: ${{ secrets.GCP_PROJECT_ID}}
           registry: 'gcr.io'
-          image_name: 'dev-fe'
+          image_name: 'dev-tf'
           cluster: 'terra-cluster'
           namespace: 'dev'
           deployment: 'front-end-dep'
