@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - Gleb-Temp-Converter/*
+      - Temp-Converter/*
 
 jobs:
   cluster-app:
