@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to cluster
-        uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1
+        uses: shashank0202/docker-build-push-gcr-update-gke-deployment-action@1.4
         with:
           service_account: ${{ secrets.GCP_SA_EMAIL}}
           zone: 'us-central1'
