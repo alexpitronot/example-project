@@ -3,7 +3,7 @@ name: 'Deployment'
 on:
   pull_request:
     paths:
-      - Temp-Converter/*
+      - ./*
 
 jobs:
   cluster-app:
