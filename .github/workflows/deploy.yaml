@@ -8,16 +8,14 @@ jobs:
     name: 'Deployment'
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to cluster
-        uses: shashank0202/docker-build-push-gcr-update-gke-deployment-action@1.4
+      - name: GCR
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          working-directory: Temp-Converter
-          service_account: ${{ secrets.GCLOUD_AUTH}}
-          zone: 'us-central1'
-          project_id: ${{ secrets.GCP_PROJECT_ID}}
-          registry: 'us.gcr.io'
-          image_name: 'dev-tf'
-          cluster: 'terra-cluster'
-          namespace: 'temp-convert'
-          deployment: 'front-end-dep'
-          container: 'temp-convert'
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          export_default_credentials: true
+      - name: Docker Build
+        run: |
+          docker build -t gcr.io/int-project/temp
+          docker push gcr.io/int-project/temp
+
