@@ -16,12 +16,15 @@ jobs:
            project_id: ${{ secrets.GCP_PROJECT_ID }}
        # Configure Docker to use the gcloud command-line tool as a credential
        # helper for authentication
-       - run: |-
+       - name: GCLOUD
+         run: |-
            gcloud --quiet auth configure-docker
        # Get the GKE credentials so we can deploy to the cluster
-       - run: |-
+       - name: GKE credentials
+         run: |-
        gcloud container clusters get-credentials terra-cluster --zone us-central1
        # Get the GKE credentials so we can deploy to the cluster
+       - name: deploy cluster
          uses: google-github-actions/get-gke-credentials@fb08709ba27618c31c09e014e1d8364b02e5042e
          with:
            cluster_name: terra-cluster
