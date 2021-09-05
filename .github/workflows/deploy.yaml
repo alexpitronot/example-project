@@ -19,6 +19,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Docker Build
         run: |
-          docker build -t gcr.io/$GCP_PROJECT_ID/$GCP_SA_KEY:$GITHUB_SHA .
-          docker push gcr.io/$GCP_PROJECT_ID/$GCP_SA_KEY:$GITHUB_SHA
+          docker build -t us.gcr.io/int-project/temp:$GITHUB_SHA .
+          docker push us.gcr.io/int-project/temp:$GITHUB_SHA
 
