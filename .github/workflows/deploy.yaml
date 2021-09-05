@@ -17,5 +17,5 @@ jobs:
       - name: Docker Build
         run: |
           docker build -t gcr.io/int-project/temp
-          docker push gcr.io/int-project/temp
+          docker push gcr.io/$GCP_PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
 
