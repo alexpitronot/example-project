@@ -17,7 +17,7 @@ jobs:
           service_account: ${{ secrets.GCLOUD_AUTH}}
           zone: 'us-central1'
           project_id: ${{ secrets.GCP_PROJECT_ID}}
-          registry: 'gcr.io'
+          registry: 'us.gcr.io'
           image_name: 'dev-tf'
           cluster: 'terra-cluster'
           namespace: 'temp-convert'
