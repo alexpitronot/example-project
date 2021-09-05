@@ -14,7 +14,7 @@ jobs:
       - name: Deploy to cluster
         uses: shashank0202/docker-build-push-gcr-update-gke-deployment-action@1.4
         with:
-          service_account: ${{ secrests.GCLOUD_AUTH}}
+          service_account: ${{ secrets.GCLOUD_AUTH}}
           zone: 'us-central1'
           project_id: ${{ secrets.GCP_PROJECT_ID}}
           registry: 'gcr.io'
