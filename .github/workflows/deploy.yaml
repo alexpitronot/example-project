@@ -5,7 +5,6 @@ on:
 
 
 env:
-  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID}}
   GKE_CLUSTER: terra-cluster    # Add your cluster name here.
   GKE_ZONE: us-central1-c   # Add your cluster zone here.
   DEPLOYMENT_NAME: gke-test # Add your deployment name here.
@@ -21,8 +20,8 @@ jobs:
     # Setup gcloud CLI
     - uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
       with:
-        service_account_key: ${{ secrets.GKE_SA_KEY }}
-        project_id: ${{ secrets.GKE_PROJECT }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
     # Configure docker to use the gcloud command-line tool as a credential helper
     - run: |-
         gcloud --quiet auth configure-docker
@@ -31,7 +30,7 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-        credentials: ${{ secrets.GKE_SA_KEY }}
+        credentials: ${{ GOOGLE_CREDENTIALS }}
     # Build the Docker image
     - name: Build
       run: |-
