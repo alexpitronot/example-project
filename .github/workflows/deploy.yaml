@@ -1,11 +1,8 @@
 name: 'Deployment'
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - app/*
+  pull_request:
+
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID}}
