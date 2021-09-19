@@ -53,7 +53,7 @@ jobs:
         gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} \
           --zone ${{ env.GKE_ZONE }} \
           --project int-project-323811
-        helm upgrade int-project-323811 int-project-323811-cluster/ \
+        helm upgrade int-project-323811 int-project-323811-cluster \
           --set randocats.image.tag=$GITHUB_SHA \
           --wait
         kubectl rollout status deployment/tf-cluster
