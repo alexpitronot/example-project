@@ -3,7 +3,6 @@ name: 'Deployment'
 on:
   pull_request:
 
-
 jobs:
   GKE:
     uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
