@@ -3,16 +3,17 @@ name: 'Deployment'
 on:
   pull_request:
 
-  jobs:
-    GKE:
-      uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
-      with:
-        service_account: ${{ secrets.GOOGLE_CREDENTIALS }}
-        zone: 'us-central1-c'
-        project_id: 'actiondemo-345343'
-        registry: 'gcr.io'
-        image_name: 'gke-test'
-        cluster: 'terra-cluster'
-        namespace: 'tf-cluster'
-        deployment: 'gke-test'
-        container: 'gke-test'
+jobs:
+  GKE:
+    name: GKE
+    uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
+    with:
+      service_account: ${{ secrets.GOOGLE_CREDENTIALS }}
+      zone: 'us-central1-c'
+      project_id: 'actiondemo-345343'
+      registry: 'gcr.io'
+      image_name: 'gke-test'
+      cluster: 'terra-cluster'
+      namespace: 'tf-cluster'
+      deployment: 'gke-test'
+      container: 'gke-test'
