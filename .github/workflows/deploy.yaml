@@ -6,7 +6,7 @@ on:
 
 env:
   GKE_CLUSTER: terra-cluster    # Add your cluster name here.
-  GKE_ZONE: us-central1-c   # Add your cluster zone here.
+  GKE_ZONE: us-central1   # Add your cluster zone here.
   DEPLOYMENT_NAME: gke-test # Add your deployment name here.
   IMAGE: static-site
 
