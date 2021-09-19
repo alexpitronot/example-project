@@ -9,7 +9,10 @@ env:
   GKE_ZONE: us-central1   # Add your cluster zone here.
   DEPLOYMENT_NAME: gke-test # Add your deployment name here.
   IMAGE: terraform-cluster
+<<<<<<< HEAD
   NAMESPACE: terraform-cluster
+=======
+>>>>>>> ce628d5b15a50c4704eb480b8a00264bb7c83d36
 
 jobs:
   setup-build-publish-deploy:
@@ -47,7 +50,11 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
+<<<<<<< HEAD
         gcloud run deploy terraform-cluster --namespace ${{ env.NAMESPACE }} --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
+=======
+        gcloud run deploy terraform-cluster --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
+>>>>>>> ce628d5b15a50c4704eb480b8a00264bb7c83d36
         --region us-central1 \
         --platform managed \
         --allow-unauthenticated \
