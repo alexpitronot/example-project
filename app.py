@@ -3,7 +3,7 @@ from flask import request
 
 app = Flask(__name__)
 
-# ffs wtf is this shit
+# test
 @app.route('/')
 def button():
     return render_template("button.html")
