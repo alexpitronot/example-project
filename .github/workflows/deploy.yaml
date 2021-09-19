@@ -42,7 +42,7 @@ jobs:
           .
     # Push the Docker image to Google Container Registry
     - name: Publish
-      run: |-
+      run: |
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
