@@ -49,7 +49,6 @@ jobs:
       run: |
         gcloud run deploy terra-cluster --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
         --cluster terra-cluster \
-        --region us-central1 \
         --platform managed \
         --allow-unauthenticated \
         --memory 512M      
