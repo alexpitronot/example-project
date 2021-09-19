@@ -50,5 +50,5 @@ jobs:
         gcloud run deploy terraform-cluster --namespace default --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
         --platform gke \
         --cluster terra-cluster \
-        --cluster-location us-central1 \
+        --cluster-location us-central1-a \
         --memory 512M      
