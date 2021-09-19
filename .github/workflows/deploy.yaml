@@ -30,7 +30,7 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-        credentials: ${{ GOOGLE_CREDENTIALS }}
+        credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
     # Build the Docker image
     - name: Build
       run: |-
