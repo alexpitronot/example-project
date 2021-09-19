@@ -1,17 +1,32 @@
+# Module usage for GKE that creates a kubernetes cluster
 module "gke" {
+  # The module source link
   source                     = "terraform-google-modules/kubernetes-engine/google"
+  # The Cluster project ID variable taken from the variables module
   project_id                 = var.project_id
+  # The Cluster name variable taken from the variables module
   name                       = var.cluster_name
+  # The Cluster region variable taken from the variables module
   region                     = var.cluster_region
+
   regional                   = false
+
   zones                      = [var.zones]
+
   network                    = var.gke_network
+
   subnetwork                 = var.gke_subnetwork
+
   ip_range_pods              = ""
+
   ip_range_services          = ""
+
   http_load_balancing        = false
+
   horizontal_pod_autoscaling = false
+
   network_policy             = false
+
   node_pools = [
     {
       name                      = "default-node-pool"
