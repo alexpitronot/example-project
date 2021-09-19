@@ -47,7 +47,7 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy terraform-cluster --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
+        gcloud run deploy terra-cluster --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
         --region us-central1 \
         --platform managed \
         --allow-unauthenticated \
