@@ -2,8 +2,7 @@ name: 'Deployment'
 
 on:
   pull_request:
-    paths:
-      - app/*
+
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID}}
