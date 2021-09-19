@@ -50,5 +50,5 @@ jobs:
         gcloud run deploy terraform-cluster --namespace ${{ env.NAMESPACE }} --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA \
         --region us-central1 \
         --platform gke \
-        --allow-unauthenticated \
+       # --allow-unauthenticated \
         --memory 512M      
