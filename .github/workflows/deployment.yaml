@@ -50,5 +50,5 @@ jobs:
         kubectl create deployment tf-cluster --image=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA
         kubectl scale deployment tf-cluster --replicas=3
         kubectl autoscale deployment tf-cluster --cpu-percent=80 --min=1 --max=5
-        kubectl expose deployment tf-cluster --name=tf-cluster-service --type=LoadBalancer --port 5000 --target-port 5000
+        kubectl expose deployment tf-cluster --name=tf-cluster-service --type=LoadBalancer --port 8080 --target-port 8080
         kubectl get service
