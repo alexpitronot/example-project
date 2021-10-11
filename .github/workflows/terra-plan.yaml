@@ -2,8 +2,10 @@ name: 'Terraform Plan'
 
 on:
   pull_request:
-    branches:
+    branch:
       - Inf
+    path:
+      - Inf/*
 
 jobs:
   terraform:
