@@ -1,4 +1,4 @@
-INT final project - David Gitman, Yossi Shalumov, Gleb Tyunikov
+INT final project - David Gitman, Yossi Shalumov, Gleb Tyunikov.
 
 This prject consists of three different branches:
 
