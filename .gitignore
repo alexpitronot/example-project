@@ -5,7 +5,7 @@
 terraform.tfstate.backup
 terraform.tfstate
 
-# .tfstate files.
+# .tfstate files..
 *.tfstate
 *.tfstate.*
 
