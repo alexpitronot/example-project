@@ -57,4 +57,5 @@ jobs:
         kubectl scale deployment tf-cluster --replicas=3
         kubectl autoscale deployment tf-cluster --cpu-percent=80 --min=1 --max=5
         kubectl expose deployment tf-cluster --name=tf-cluster-service --type=LoadBalancer --port 8080 --target-port 8080
+        sleep 50s
         kubectl get service
