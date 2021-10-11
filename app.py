@@ -3,7 +3,7 @@ from flask import request
 
 app = Flask(__name__)
 
-# cyka bliat
+# testic
 @app.route('/')
 def button():
     return render_template("button.html")
