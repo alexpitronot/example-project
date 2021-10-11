@@ -41,6 +41,17 @@ Docker - App wraping environmnet
 
 Python - The app language
 
+### *Prerequisites:*
+
+GC account with the following:
+
+ - Two service accounts with owner permissions (Not best practice):
+ 
+    1 - Cluster
+    
+    2 - Terraform
+ 
+
 
 
 
