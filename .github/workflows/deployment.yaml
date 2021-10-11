@@ -51,6 +51,8 @@ jobs:
       run: |
         gcloud container clusters get-credentials terra-cluster --zone us-central1
         kubectl delete deployment tf-cluster 
+        kubectl delete hpa tf-cluster
+        kubectl delete svc tf-cluster-service
         kubectl create deployment tf-cluster --image=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA
         kubectl scale deployment tf-cluster --replicas=3
         kubectl autoscale deployment tf-cluster --cpu-percent=80 --min=1 --max=5
