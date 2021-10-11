@@ -50,8 +50,14 @@ GC account with the following:
     1 - Cluster
     
     2 - Terraform
+  
+ - Set up the following github secrets:
  
-
+   1 - GCP_PROJECT_ID
+   
+   2 - GCP_SA_EMAIL
+   
+   3 - GOOGLE_CREDENTIALS
 
 
 
