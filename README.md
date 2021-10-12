@@ -43,7 +43,7 @@ Python - The app language
 
 ### *Prerequisites:*
 
-GC account with the following:
+GC account with the following.:
 
  - Two service accounts with owner permissions (Not best practice):
  
