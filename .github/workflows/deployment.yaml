@@ -47,7 +47,12 @@ jobs:
       run: |
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/$IMAGE:$GITHUB_SHA
     # Remove the old deployment 
-
+    - name: Remove Old Deploy Files
+      run: |
+        gcloud container clusters get-credentials terra-cluster --zone us-central1
+        kubectl delete deployment tf-cluster 
+        kubectl delete hpa tf-cluster
+        kubectl delete svc tf-cluster-service
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
