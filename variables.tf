@@ -33,13 +33,13 @@ variable "project_id" {
 variable "gke_service_account" {
   type = string
   description = "Gke Account name"
-  default = "cluster@int-project-323811.iam.gserviceaccount.com"
+  default = "projecte-xample-1@projecte-xample-1.iam.gserviceaccount.com"
 }
 
 variable "service_account_id" {
   type = string
   description = "service account id"
-  default = "116941181024431695138"
+  default = "702359916422"
 }
 
 variable "gke_network" {
