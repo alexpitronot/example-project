@@ -26,14 +26,14 @@ variable "machine_type" {
 variable "project_id" {
   type = string
   description = "project id"
-  default = "int-project-323811"
+  default = "projecte-xample-1"
 }
 
 
 variable "gke_service_account" {
   type = string
   description = "Gke Account name"
-  default = "cluster@int-project-323811.iam.gserviceaccount.com"
+  default = "cluster@projecte-xample-1.iam.gserviceaccount.com"
 }
 
 variable "service_account_id" {
