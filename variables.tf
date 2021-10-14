@@ -33,7 +33,7 @@ variable "project_id" {
 variable "gke_service_account" {
   type = string
   description = "Gke Account name"
-  default = "649441431561@cloudservices.gserviceaccount.com"
+  default = "649441431561-compute@developer.gserviceaccount.com"
 }
 
 variable "service_account_id" {
