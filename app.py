@@ -13,7 +13,7 @@ def button():
 @app.route('/about')
 def about():
     return """ <center><b><p style="font-family:Tahoma;color:red;font-size: 15px">This WebApp was made by David Gitman<br/>
-               The following Flask app will convert Celsius To Fahrenheit..<br/>
+               The following Flask app will convert Celsius To Fahrenheit...<br/>
                In Order to run this flask app in a stand alone mode run app.py using 'python -m flask run' command.<br/>
                </center></b></p>"""
 
